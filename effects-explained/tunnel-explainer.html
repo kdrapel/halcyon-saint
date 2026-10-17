@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Saint — The actual plane-to-tunnel mapping</title><link rel="stylesheet" href="saint-theme.css"></head>
+<body data-scene="passage"><main>
+<nav class="explanation-nav" aria-label="Effects explained"><a class="home" href="../index.html">← Saint player</a><a href="tunnel-explainer.html" aria-current="page">Plane to tunnel</a><a href="cavern-explainer.html">Cavern meshes</a></nav>
+<div class="eyebrow">Saint / Original-code experiment</div>
+<h1>One view. Two mappings.<br><span class="accent">Build Saint’s tunnel.</span></h1>
+<p class="lead">Saint does not bend a polygon sheet into a tube. It calculates where viewing lines meet a plane or a cylinder, turns those intersections into texture coordinates, and blends between the mappings. Here you control that blend inside the translated original renderer.</p>
+<div class="layout">
+<section class="card"><h2>Your experiment · original renderer</h2>
+<canvas id="lab" width="640" height="400" aria-label="Original Saint renderer with user-controlled mapping inputs"></canvas>
+<p id="state" role="status">Loading original machine state…</p>
+<label><input id="grid" type="checkbox"> Reveal the 8×8 screen blocks</label>
+<p class="sub">Background only: original texture and fixed resource palette, without logo, objects, sprites or palette flashes. The optional block grid is an overlay.</p>
+<p id="measured" class="sub"></p>
+</section>
+<section class="card"><h2>Make the transformation yourself</h2>
+<form id="controls">
+<div class="presets"><button type="button" data-mix="0">1 · Plane mapping</button><button type="button" data-mix=".5">2 · Blend both</button><button type="button" data-mix="1">3 · Cylinder mapping</button></div>
+<label for="mix">Plane → cylinder <output></output><input id="mix" type="range" min="0" max="1" step=".01" value="0"></label>
+<p class="sub">Changes the original mapping weight. This blends U, V and shade values, not two finished images or two meshes.</p>
+<label for="phase">Position on the demo’s path (player seconds) <output></output><input id="phase" type="range" min="25" max="35.4" step=".1" value="25"></label>
+<p class="sub">Manual blending uses 25.0–35.4 seconds, where the original viewpoint is inside the cylinder. Earlier viewpoints can miss the cylinder and produce invalid intersections. Enable original background choreography to inspect the earlier plane-only section from 15.0 seconds. The texture palette stays fixed.</p>
+<label for="turn">Look target X offset (world units) <output></output><input id="turn" type="range" min="-2" max="2" step=".01" value="0"></label>
+<p class="sub">Offsets target X in the original path records. The demo’s cubic path evaluation and view-matrix routine calculate the changed view. This is an experimental input, not a recovered user control.</p>
+<label><input id="original" type="checkbox"> Use the original choreography at this time</label>
+<p class="sub">Uses the original background mapping and viewpoint inputs. The manual blend and look target controls are disabled. Objects and palette flashes remain excluded.</p>
+</form><button id="reset" type="button">Reset experiment</button>
+</section></div>
+<div class="layout">
+<section class="card"><h2>1. Work backwards from the screen</h2>
+<p>At <code>0x2CB81–0x2CCEC</code>, the original loops over 41 columns and 26 rows. For each grid point it transforms a stored three-component vector using the current matrix and path-derived origin, then calls the selected mapping routine.</p>
+<p>This is a screen-to-texture calculation. There are intersection calculations at the grid points; the renderer does not need a finely tessellated tube or an intersection calculation for every pixel.</p>
+<p>The moving viewpoint comes from the original path evaluation: <code>0x1F324</code> evaluates cubic polynomials, and <code>0x2C9E8</code> copies their results into the frame’s transform inputs. Changing path time here advances the original timer and drawing sequence, including those path calculations.</p>
+<h2>2. Map a plane</h2>
+<p>The routine at <code>0x2A0F5</code> starts with an intersection against <code>z = −400</code>. Calling the origin O and the transformed point P:</p>
+<pre>D = P − O
+t = (−400 − Oz) / Dz</pre>
+<p>The code also perturbs the intersection parameter using sine/cosine terms. It derives the two texture coordinates from the resulting x/y position and calculates a shading value. This is why “a flat checkerboard floor” was an incomplete account of the original effect.</p>
+<h2>3. Map a cylinder</h2>
+<p>The routine at <code>0x29D9A</code> instead forms a quadratic using the x/y components:</p>
+<pre>A = Dx² + Dy²
+B = 2(Ox·Dx + Oy·Dy)
+C = Ox² + Oy² − R²
+A·t² + B·t + C = 0</pre>
+<p>It selects a root using the square root of the discriminant, applies a sine-based perturbation, then uses an angle from the hit’s x/y coordinates for one texture coordinate and its z position for the other. A distance-related value supplies shading. The exact calculations, signs, rounding and lookup behavior run in the original translated routine here.</p>
+</section>
+<section class="card"><h2>4. Blend the mappings</h2>
+<p>During a transition, both mapping routines run for the same grid point. At <code>0x2CC42</code>, each output component is combined as:</p>
+<pre>result = cylinderResult · blend
+       + planeResult · (1 − blend)</pre>
+<p>The experiment fixes the primary routine to the plane and the secondary to the cylinder, then writes your blend into the original float32 cell at <code>0x2B7E8</code>. It enables the original transition branch and holds transition velocity at zero, suppressing its additional matrix translation while you change the blend. The path state comes from the selected time. The texture palette stays fixed, and the look target changes through its control. At blend 0 or 1 only the selected mapping runs, avoiding invalid values from an unused intersection.</p>
+<p>In the original choreography the timer evolves the weight and its velocity, then swaps the mapping pointers when the transition finishes. The natural weight can briefly exceed 1; the manual control is limited to 0–1 so you can inspect the two endpoints.</p>
+<h2>5. Fill the gaps</h2>
+<p>The 41×26 samples bound 40×25 blocks of 8×8 pixels: the full 320×200 picture. The rasterizer interpolates the fixed-point U, V and shading values inside each block, samples the original indexed texture, and uses the original shading lookup. This experiment stops at the end of this background pass, before any object, sprite or logo drawing.</p>
+<h3>The actual coordinate grid</h3>
+<canvas id="coordinates" width="410" height="260" aria-label="Computed 41 by 26 mapping grid, with U in red, V in green and shade in blue"></canvas>
+<p id="grid-status" class="sub"></p><p id="grid-sample" class="sub">Point at a sample to inspect its coordinates.</p>
+<p class="sub">One cell per computed sample. Red = continuous U, green = continuous V, blue = shade on its 0–63 scale. U and V use smooth, automatically centred colour scales, rather than wrapping at texture repeats. Invalid intersections and empty samples are slate. Hover or touch the grid to inspect values. This is mapping data, not a mesh cross-section.</p>
+</section></div>
+<p class="review-note">The image executes <a href="../runtime/generated/opening-frame.mjs">opening-frame.mjs</a>, with the same <a href="../runtime/opening-raster.mjs">raster specialization</a> used by the player. Path states use the release’s <a href="../runtime/sequence.mjs">scheduler</a> and packaged seek checkpoints. Manual inputs are controlled experiments, not original captured frames. Original background mode preserves the release’s mapping inputs but omits later drawing passes and uses the original TXT3.SCX resource palette at RAM 0x2AED4. Timer-driven palette flashes and fades are excluded. This does not independently certify DOS interrupt timing.</p>
+<noscript><p>Enable JavaScript to use the original-code experiment.</p></noscript>
+<script type="module" src="tunnel-lab.mjs"></script>
+</main></body></html>

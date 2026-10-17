@@ -43,7 +43,7 @@ import {executeWhiteEnding} from './generated/white-ending-frame.mjs';
 import {executeWhiteStep} from './generated/white-frame.mjs';
 import {executeWhiteTick} from './generated/white-tick.mjs';
 export const previewTiming = { pitHz:1193182, divisor:0x4100, fps:10 };
-export function createOpeningSequence(machine, initialPalette, {files,initialScene='opening',startWithIntro=false,musicState,resume,onPcm,extendCredits=true,extendTerrain=false,extendRadial=false,extendMonochrome=false,extendV08=false,extendCavern=false,extendWhite=false}={}) {
+export function createOpeningSequence(machine, initialPalette, {files,initialScene='opening',startWithIntro=false,musicState,resume,onPcm,beforeDraw,extendCredits=true,extendTerrain=false,extendRadial=false,extendMonochrome=false,extendV08=false,extendCavern=false,extendWhite=false}={}) {
   let tick=resume?.tick??0, samples=resume?.samples??0;
   let scene=resume?.scene??(startWithIntro?'intro':initialScene);
   const updates={intro:executeIntroTick,opening:executeOpeningTick,orange:executeOrangeTick,blue:executeBlueTick,credits:executeCreditsTick,terrain:executeTerrainTick,radial:executeRadialTick,monochrome:executeMonochromeTick,v08:executeV08Tick,cavern:executeCavernTick,white:executeWhiteTick,ending:executeWhiteTick};
@@ -167,6 +167,7 @@ export function createOpeningSequence(machine, initialPalette, {files,initialSce
     }
     if(scene!=='ending'){ // the original waits on the static production picture; the ISR animates its palette
       const draw=drawings[scene];
+      beforeDraw?.(machine,{scene,index});
       draw(machine);
     }
     const pixelOffset=scene==='credits'?machine.u32(0x36ae8):['monochrome','v08','cavern','white','ending'].includes(scene)?0xa0000-machine.u32(0x18):0x330000;

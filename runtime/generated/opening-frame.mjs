@@ -4,10 +4,10 @@ import {installRasterKernels} from '../raster-kernels.mjs';
 // No opcode decoding/dispatch. Unsupported branches/instructions fail.
 const codeSpans=[[660, 706], [718, 730], [825, 913], [998, 1053], [8528, 8692], [8757, 8814], [9201, 9231], [9259, 9493], [9668, 9687], [10161, 10247], [10369, 10524], [11132, 11431], [11507, 11601], [12861, 13081], [13085, 13209], [13213, 13344], [13505, 14573], [15057, 15185], [15820, 15899], [15946, 16336], [17367, 17432], [83880, 84728], [84736, 85156], [85332, 86198], [86228, 86704], [88160, 88788], [89338, 91694], [93764, 94225], [94248, 94703], [94744, 96257], [127680, 127952], [128186, 128368], [128425, 129128], [129140, 129303], [129586, 130798], [130812, 135929], [168704, 168809], [168868, 169604], [170167, 170647], [171418, 171874], [172277, 172586], [172811, 173379], [173400, 173602], [173604, 173664], [180357, 185398], [185403, 185412], [185417, 185549], [185763, 186542], [186576, 187968], [187976, 188178], [196293, 200899], [201295, 202017], [203448, 203650], [212649, 216531], [216563, 217760], [218156, 218911], [220572, 220774], [225606, 225756], [225813, 226516], [226528, 228842], [229192, 229394], [236083, 238994], [239952, 240059], [241256, 241458], [248213, 252805], [253768, 253875], [255032, 255234], [264409, 269401], [270364, 270712], [271896, 272098], [280595, 284010], [284968, 285162], [286408, 286610], [294475, 297934], [298894, 299094], [300428, 300630], [306964, 309722], [309791, 310613]];
 const patchSpans=[[170625, 170629], [170638, 170642]];
-export function executeOpeningFrame(c,{blockLimit=2000000}={}){
+export function executeOpeningFrame(c,{blockLimit=2000000,backgroundOnly=false}={}){
 c.setCodeContract(codeSpans,patchSpans);
 let pc=182424; c.instructions=0;c.blocks=0;
-while(c.blocks++<blockLimit){c.r.eip=pc;if(pc===186483)return c;const block=blocks[pc];if(!block)throw new Error("Unknown compiled block "+pc.toString(16));pc=block(c);}throw new Error("Compiled block limit");}
+while(c.blocks++<blockLimit){c.r.eip=pc;if(pc===186483||(backgroundOnly&&pc===184313))return c;const block=blocks[pc];if(!block)throw new Error("Unknown compiled block "+pc.toString(16));pc=block(c);}throw new Error("Compiled block limit");}
 const blocks=Object.create(null);
 blocks[660]=function block_294(c){let pc,a,b;c.instructions+=3;
 // 00000294
