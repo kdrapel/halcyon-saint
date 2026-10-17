@@ -1,0 +1,278 @@
+{
+  "schema": 1,
+  "interval": 15,
+  "fps": 10,
+  "base_sha256": "7ed1ebc8ffdd9729cbe53dd255af7989dcac05b13b66ed0fb15c5432002d9a89",
+  "graphics": [
+    {
+      "seconds": 0,
+      "file": "graphics-0000.bin.gz",
+      "sha256": "abb7d0d4a4b53a8026c023e36ae5a458ebeec07a11bb2cdd3be616ac094097b5",
+      "bytes": 6938
+    },
+    {
+      "seconds": 15,
+      "file": "graphics-0150.bin.gz",
+      "sha256": "bff5f2cb2c997b9e83191d6d71b85c7a532230c6a026214316d9959fccc580d4",
+      "bytes": 187569
+    },
+    {
+      "seconds": 30,
+      "file": "graphics-0300.bin.gz",
+      "sha256": "f4e46bec7be77c5988f0202b1ca21954b15e8d27fd28f3df65f7608311a0768e",
+      "bytes": 195552
+    },
+    {
+      "seconds": 45,
+      "file": "graphics-0450.bin.gz",
+      "sha256": "b3737febae81d83ecf03e0432c9a1fcd12ae1c64bd17d374294a1d19851599ab",
+      "bytes": 279488
+    },
+    {
+      "seconds": 60,
+      "file": "graphics-0600.bin.gz",
+      "sha256": "27943a5e9b4ea87254a27ec1ecb7f69201bec9a4feba82ba4a33df621e6f191b",
+      "bytes": 273695
+    },
+    {
+      "seconds": 75,
+      "file": "graphics-0750.bin.gz",
+      "sha256": "7453ae4601ead1c3315e9a3166e24b3d8b3a634ba4605f2f626e8af5ee15043b",
+      "bytes": 255748
+    },
+    {
+      "seconds": 90,
+      "file": "graphics-0900.bin.gz",
+      "sha256": "3d9fafdde62f539edb7ff59c76918f113fcb1e1f2634dd6be6bb96dda0da08e7",
+      "bytes": 381658
+    },
+    {
+      "seconds": 105,
+      "file": "graphics-1050.bin.gz",
+      "sha256": "e2ac8da2cdc8ae372d4e42718102a97b5ea5fca56752b5881786809d4a60efc2",
+      "bytes": 396762
+    },
+    {
+      "seconds": 120,
+      "file": "graphics-1200.bin.gz",
+      "sha256": "76c8fa135fe70d07b5d6b9eec1d3d795eaa38cbac726d76d524cab8dc7a2d857",
+      "bytes": 427179
+    },
+    {
+      "seconds": 135,
+      "file": "graphics-1350.bin.gz",
+      "sha256": "dc395ee88d240830cf80fa7f0f819a47ded4158493d78445746f99cff0393b51",
+      "bytes": 416767
+    },
+    {
+      "seconds": 150,
+      "file": "graphics-1500.bin.gz",
+      "sha256": "73a2936ad2bef0e806c3ad79ad23b742b608e2ffe110ffe7ad9b91c8d15de28d",
+      "bytes": 404179
+    },
+    {
+      "seconds": 165,
+      "file": "graphics-1650.bin.gz",
+      "sha256": "8e3b0547c503bddf7ae36069a8b10bef98033b64f53f1f5745fe37dc698d4086",
+      "bytes": 415704
+    },
+    {
+      "seconds": 180,
+      "file": "graphics-1800.bin.gz",
+      "sha256": "5e7b3d41837ad7aedc07517aac1a8462d162b3067fc2c32ce6ed5549fe356f9d",
+      "bytes": 411073
+    },
+    {
+      "seconds": 195,
+      "file": "graphics-1950.bin.gz",
+      "sha256": "603b42cee82c88b37740c2b93d05820340e2061a0130dd6ad6e6256e68098dcd",
+      "bytes": 389712
+    },
+    {
+      "seconds": 210,
+      "file": "graphics-2100.bin.gz",
+      "sha256": "2252d8ad4d0ba6874823d69c06fc773bdb30651cf211fb124e168a8458c5a365",
+      "bytes": 403503
+    },
+    {
+      "seconds": 225,
+      "file": "graphics-2250.bin.gz",
+      "sha256": "d0d44660ccc316f48dc9673e02a2b7e02fc2948f33fd632bea2bb15e48ccce1f",
+      "bytes": 398012
+    },
+    {
+      "seconds": 240,
+      "file": "graphics-2400.bin.gz",
+      "sha256": "98a1f1b45dfbe20f5209bf67023852bd49db9d6940815c291e1974ced84d971a",
+      "bytes": 410542
+    },
+    {
+      "seconds": 255,
+      "file": "graphics-2550.bin.gz",
+      "sha256": "58de7e6d081c7e61b120c817a17e9744983587f62afdf9bc203b1ad5d2326e7b",
+      "bytes": 399171
+    }
+  ],
+  "audio": [
+    {
+      "seconds": 0,
+      "file": "audio-0000.bin.gz",
+      "sha256": "afa9ef19c6db987009fb171d307fe82f1489add4bc436823a8bceee07d3d17f1",
+      "bytes": 2935
+    },
+    {
+      "seconds": 15,
+      "file": "audio-0150.bin.gz",
+      "sha256": "6c956cc64a4e50537b03a90c05ec8f3ceb1ddecf8d3cc5d0a0ae10f3439f4ab8",
+      "bytes": 14035
+    },
+    {
+      "seconds": 30,
+      "file": "audio-0300.bin.gz",
+      "sha256": "a38a5a1ed731c62160c759edf7ad4c7475b778fa26520a212f0760c6a15cd659",
+      "bytes": 13388
+    },
+    {
+      "seconds": 45,
+      "file": "audio-0450.bin.gz",
+      "sha256": "bb80b3cd591e618dd31e6a20e6bbafa301edfe8447c1e018cf50a69f446e7cf8",
+      "bytes": 13555
+    },
+    {
+      "seconds": 60,
+      "file": "audio-0600.bin.gz",
+      "sha256": "ba683ade8f31ad9df57a2ef5e814545b1b3502d667c751855ca2fc4aabc7cab6",
+      "bytes": 13835
+    },
+    {
+      "seconds": 75,
+      "file": "audio-0750.bin.gz",
+      "sha256": "91680043840dee7eed25fc46312dd5097b292418f85e9f2b66fc138626f31537",
+      "bytes": 13583
+    },
+    {
+      "seconds": 90,
+      "file": "audio-0900.bin.gz",
+      "sha256": "8a62aaa8a2110249fe61e006babaca7b99eecb77f367c62949268281e930e1ef",
+      "bytes": 12491
+    },
+    {
+      "seconds": 105,
+      "file": "audio-1050.bin.gz",
+      "sha256": "f1466859c860d37da1852d81fc3b1a71ee264014719f298dac021fdf7b5bc23f",
+      "bytes": 12378
+    },
+    {
+      "seconds": 120,
+      "file": "audio-1200.bin.gz",
+      "sha256": "f634d4b12158fa1acf7d4fe6e8c2705edc23ee7142a818bd2db43d03e50f058a",
+      "bytes": 12761
+    },
+    {
+      "seconds": 135,
+      "file": "audio-1350.bin.gz",
+      "sha256": "c71c0cab8d7ec9ed23c7f843c6caeab44433e5294d57c3cae13e2a8e58c0c368",
+      "bytes": 13353
+    },
+    {
+      "seconds": 150,
+      "file": "audio-1500.bin.gz",
+      "sha256": "385b5023f58f4986aa3f873e42003f9908e8f0baf4da0952540ec4afa982b9ac",
+      "bytes": 14098
+    },
+    {
+      "seconds": 165,
+      "file": "audio-1650.bin.gz",
+      "sha256": "7bc2107dcf77e80718e2fdc0c5339e65ced77ea49d978dcbfaf058f79acbf32c",
+      "bytes": 13567
+    },
+    {
+      "seconds": 180,
+      "file": "audio-1800.bin.gz",
+      "sha256": "3e5f0c15e0d07f3c5513a420d6e92bfbfbc89e422af834b7cd44073553ae3218",
+      "bytes": 14063
+    },
+    {
+      "seconds": 195,
+      "file": "audio-1950.bin.gz",
+      "sha256": "e4360a39cc1cc2df0b809dceabda4330edc47e6e0b43b545d5ce2bdf25fa80b1",
+      "bytes": 13946
+    },
+    {
+      "seconds": 210,
+      "file": "audio-2100.bin.gz",
+      "sha256": "536353b962cf991094b3f49b8f4018632083615cc84ab5799cea533af7c7c8dc",
+      "bytes": 13834
+    },
+    {
+      "seconds": 225,
+      "file": "audio-2250.bin.gz",
+      "sha256": "4aaf07069373575bbdbb92d6f6d5966da0aee5cb0ec3718fc364bf5aeda0603e",
+      "bytes": 14080
+    },
+    {
+      "seconds": 240,
+      "file": "audio-2400.bin.gz",
+      "sha256": "4891cce3372192a83dab0289556f040fdd43971b9218d321389baf0961b2eebc",
+      "bytes": 14547
+    },
+    {
+      "seconds": 255,
+      "file": "audio-2550.bin.gz",
+      "sha256": "fcc4b740ee97f18e664ab3b14c6cdf9d6755c170895b504107fbb8c4a44d0d70",
+      "bytes": 14606
+    }
+  ],
+  "transitions": [
+    {
+      "seconds": 0,
+      "scene": "intro"
+    },
+    {
+      "seconds": 14.2,
+      "scene": "opening"
+    },
+    {
+      "seconds": 35.5,
+      "scene": "orange"
+    },
+    {
+      "seconds": 78.6,
+      "scene": "blue"
+    },
+    {
+      "seconds": 114.3,
+      "scene": "credits"
+    },
+    {
+      "seconds": 121.4,
+      "scene": "terrain"
+    },
+    {
+      "seconds": 128.5,
+      "scene": "radial"
+    },
+    {
+      "seconds": 135.6,
+      "scene": "monochrome"
+    },
+    {
+      "seconds": 146.5,
+      "scene": "v08"
+    },
+    {
+      "seconds": 183.4,
+      "scene": "cavern"
+    },
+    {
+      "seconds": 213,
+      "scene": "white"
+    },
+    {
+      "seconds": 257.3,
+      "scene": "ending"
+    }
+  ],
+  "duration": 267.1,
+  "verified_restores": 36
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Saint by Halcyon. The August 1997 demo, running in your browser.">
+  <title>Saint — Halcyon</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="shell">
+    <canvas id="screen" width="320" height="200" aria-label="Saint demo"></canvas>
+    <section id="gate" aria-label="Saint">
+      <canvas id="background" width="320" height="200" aria-hidden="true"></canvas>
+      <div class="shade" aria-hidden="true"></div>
+      <div class="gate-content">
+        <h1><span>Saint</span></h1>
+        <p class="group">Halcyon</p>
+        <p class="meta">Demo · August 1997 · Final version</p>
+        <dl class="credits">
+          <div><dt>Code</dt><dd>Blitz, Placidity</dd></div>
+          <div><dt>Player / pmode</dt><dd>Asmu / Tran</dd></div>
+          <div><dt>Meshes</dt><dd>Ren</dd></div>
+          <div><dt>Graphics</dt><dd>Shrine, Placidity, Croaker</dd></div>
+          <div><dt>Music</dt><dd>Naks, Pam, Vesuri / Da Jormas</dd></div>
+        </dl>
+        <button id="start" class="start" type="button" disabled>Preparing<span class="dots" aria-hidden="true"></span></button>
+      </div>
+      <footer>
+        <p><kbd>space</kbd> pause · <kbd>← →</kbd> seek · <kbd>f</kbd> fullscreen · <kbd>esc</kbd> stop</p>
+  
+  <nav aria-label="Production links">
+          <a href="https://www.pouet.net/prod.php?which=296" target="_blank" rel="noopener noreferrer">Pouët</a>
+          <a id="github" href="https://github.com/kdrapel/halcyon-saint">GitHub</a>
+        </nav>
+		
+      </footer>
+    </section>
+    <div id="hud" hidden>
+      <button id="pause" type="button">Pause</button>
+      <button id="stop" type="button">Stop</button>
+      <button id="backward" type="button" aria-label="Back 15 seconds">−15s</button>
+      <button id="forward" type="button" aria-label="Forward 15 seconds">+15s</button>
+      <input id="timeline" list="seek-marks" type="range" min="0" max="267" step="0.1" value="0" aria-label="Seek demo">
+      <datalist id="seek-marks"></datalist>
+      <output id="time">0:00</output>
+      <button id="fullscreen" type="button">Fullscreen</button>
+      <label class="stats-switch"><input id="stats-toggle" type="checkbox" role="switch" aria-controls="nerd-panel">Stats for nerds</label>
+    </div>
+    <div id="loading" hidden role="status" aria-live="polite"><span>Loading…</span></div>
+    <section id="nerd-panel" hidden aria-label="Stats and live music player">
+      <output id="stats" aria-label="Displayed frames per second">FPS: —</output>
+      <div id="player-details"></div>
+      <div id="tracker-title">Saint · S3M · 4 channels</div>
+      <div class="tracker-scroll"><canvas id="tracker" width="670" height="202" aria-label="Live four-channel music tracker"></canvas></div>
+    </section>
+    <p id="status" role="status" aria-live="polite"></p>
+  </main>
+  <script type="module" src="app/app.mjs"></script>
+</body>
+</html>
